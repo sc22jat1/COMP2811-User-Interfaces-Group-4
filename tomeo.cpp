@@ -21,6 +21,7 @@
 #include <QStackedWidget>
 #include <QLabel>
 #include <QScrollArea>
+#include "profile_page.h"
 
 // read in videos and thumbnails to this directory
 std::vector<TheButtonInfo> getInfoIn(std::string loc) {
@@ -99,13 +100,29 @@ int main(int argc, char *argv[]) {
     topBarWidget->setStyleSheet("background: qlineargradient(x1:0, y1:0, x2:0, y2:1, stop:0 #29465B, stop:1 #36454F);");
 
 
+    // Create the profile page
+    ProfilePage profilePage;
+
+    // Create the main window and layout
+    QWidget window;
+    QVBoxLayout *top = new QVBoxLayout();
+    window.setLayout(top);
+    window.setWindowTitle("tomeo");
+    window.setMinimumSize(800, 680);
+
     // Profile picture (clickable to navigate to profile)
     QPushButton *profilePicButton = new QPushButton("Profile");
+    top->addWidget(profilePicButton);
     profilePicButton->setFixedSize(100, 100);
     profilePicButton->setStyleSheet("QPushButton {"
                                     "    border-radius: 50px;"
                                     "    background-color: #6D7B8D;"
                                     "}");
+
+    // Connect the button's clicked signal to show the profile page
+    QObject::connect(profilePicButton, &QPushButton::clicked, [&profilePage]() {
+        profilePage.exec();
+    });
 
     // App name label
     QLabel *appNameLabel = new QLabel("ForReal.");
@@ -223,3 +240,4 @@ int main(int argc, char *argv[]) {
     // wait for the app to terminate
     return app.exec();
 }
+
