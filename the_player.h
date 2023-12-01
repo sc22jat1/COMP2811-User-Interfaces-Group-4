@@ -1,52 +1,32 @@
-//
-//
-//
+#ifndef THE_PLAYER_H
+#define THE_PLAYER_H
 
-#ifndef CW2_THE_PLAYER_H
-#define CW2_THE_PLAYER_H
-
-
-#include <QApplication>
 #include <QMediaPlayer>
-#include "the_button.h"
+#include <QMediaContent>
+#include <QVideoWidget>
+#include <QUrl>
 #include <vector>
-#include <QTimer>
+#include "the_button.h"
 
-class ThePlayer : public QMediaPlayer {
-
-Q_OBJECT
-
-private:
-    std::vector<TheButtonInfo>* infos;
-    std::vector<TheButton*>* buttons;
-    QTimer* mTimer;
-    long updateCount = 0;
+class ThePlayer : public QMediaPlayer
+{
+    Q_OBJECT
 
 public:
-    ThePlayer() : QMediaPlayer(NULL) {
-        setVolume(0); // be slightly less annoying
-        connect (this, SIGNAL (stateChanged(QMediaPlayer::State)), this, SLOT (playStateChanged(QMediaPlayer::State)) );
+    ThePlayer(QObject *parent = nullptr);
 
-        mTimer = new QTimer(NULL);
-        mTimer->setInterval(1000); // 1000ms is one second between ...
-        mTimer->start();
-        connect( mTimer, SIGNAL (timeout()), SLOT ( shuffle() ) ); // ...running shuffle method
-    }
-
-    // all buttons have been setup, store pointers here
-    void setContent(std::vector<TheButton*>* b, std::vector<TheButtonInfo>* i);
-
-private slots:
-
-    // change the image and video for one button every one second
+    void setContent(std::vector<TheButton *> *b, std::vector<TheButtonInfo> *i);
     void shuffle();
-
-    void playStateChanged (QMediaPlayer::State ms);
+    void jumpTo(TheButtonInfo *button);
 
 public slots:
+    void playStateChanged(QMediaPlayer::State ms);
+    void playPauseToggle(); // New function for play/pause toggle
 
-    // start playing this ButtonInfo
-    void jumpTo (TheButtonInfo* button);
+private:
+    std::vector<TheButton *> *buttons;
+    std::vector<TheButtonInfo> *infos;
+    int updateCount;
 };
 
-#endif //CW2_THE_PLAYER_H
+#endif // THE_PLAYER_H
