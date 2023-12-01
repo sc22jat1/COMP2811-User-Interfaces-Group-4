@@ -12,6 +12,7 @@
 *.mp4
 *.png
 *.wmv
+*.MOV
 
 # Precompiled Headers
 *.gch
