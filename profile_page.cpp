@@ -11,9 +11,12 @@
 ProfilePage::ProfilePage( QWidget *parent) : QDialog(parent), ui(new Ui::ProfilePage) {
     ui->setupUi(this);
 
-    // set the slot function
+    // Play 버튼 클릭 시 연결할 슬롯 함수를 설정합니다.
     connect(ui->Play_Button_1, &QPushButton::clicked, this, &ProfilePage::on_Play_Button_1_Clicked);
     connect(ui->Play_Button_2, &QPushButton::clicked, this, &ProfilePage::on_Play_Button_2_Clicked);
+
+    // connector to close button
+    connect(ui -> Close_Button, &QPushButton::clicked, this, &ProfilePage::on_Close_Button_Clicked);
 
     // connector to change image for user
     connect(ui->Tool_to_change_img, SIGNAL(clicked()), this, SLOT(on_Tool_to_change_img_clicked()));
@@ -38,15 +41,26 @@ void ProfilePage::on_Tool_to_change_img_clicked()
         QMessageBox::information(this, "Image not selected", "No image selected or canceled");
     }
 
-    
+    // 선택된 이미지를 QLabel (Profile_img_appearance)에 표시하도록 설정
+
 }
 
-// Home button
+// Home 버튼 클릭 시 호출되는 슬롯 함수 구현
 void ProfilePage::on_Homebutton_clicked() {
-    
-    hide(); // hide current page
-   
+    // 초기 홈 페이지로 돌아가는 로직을 구현
+    // 여기에 필요한 코드를 추가하세요.
+    // 예를 들면, hide()를 호출하여 현재 페이지를 숨기고, 홈 페이지를 보여줄 수 있습니다.
+    hide(); // 현재 페이지를 숨김
+    // 다음에는 홈 페이지를 보여주는 코드를 추가하세요.
 }
+
+void ProfilePage::on_Close_Button_Clicked() {
+
+    //tool to close ProfilePage
+    close();
+
+}
+
 
 void ProfilePage::on_Play_Button_1_Clicked()
 {

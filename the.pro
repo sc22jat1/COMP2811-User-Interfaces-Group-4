@@ -28,3 +28,9 @@ FORMS += \
 
 RESOURCES += \
     Profile_resource.qrc
+
+DISTFILES += \
+    ../Downloads/black-24dp/2x/baseline_close_black_24dp.png
+
+
+
