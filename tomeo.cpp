@@ -22,6 +22,7 @@
 #include <QLabel>
 #include <QScrollArea>
 #include "profile_page.h"
+#include "video_recorder_page.h"
 
 // read in videos and thumbnails to this directory
 std::vector<TheButtonInfo> getInfoIn(std::string loc) {
@@ -221,18 +222,18 @@ int main(int argc, char *argv[]) {
                                   "    background-color: #ff4500;"
                                   "}");
 
+    // Set up Video Recorder Page
+    VideoRecorderPage videoRecorderPage;
+
+    // Connect the button's clicked signal to show the profile page
+    QObject::connect(navigateButton, &QPushButton::clicked, [&videoRecorderPage]() {
+        videoRecorderPage.show();
+    });
+
     bottomBarLayout->addWidget(navigateButton, 0, Qt::AlignCenter);
 
     // Add bottom bar to the main layout
     mainLayout->addWidget(bottomBarWidget);
-
-    // Connect the click event of the navigateButton to close the application and open another .cpp
-    QObject::connect(navigateButton, &QPushButton::clicked, [&app]() {
-        app.quit();  // Close the current application
-
-        // Replace "path/to/your/other/cpp" with the actual path to your other .cpp file
-        QDesktopServices::openUrl(QUrl::fromLocalFile("path/to/your/other/cpp"));
-    });
 
     // showtime!
     mainWindow.show();
@@ -240,4 +241,7 @@ int main(int argc, char *argv[]) {
     // wait for the app to terminate
     return app.exec();
 }
+
+
+
 

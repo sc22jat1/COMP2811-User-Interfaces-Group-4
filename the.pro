@@ -11,12 +11,14 @@ SOURCES += \
         profile_page.cpp \
         the_button.cpp \
         the_player.cpp \
-        tomeo.cpp
+        tomeo.cpp \
+        video_recorder_page.cpp
 
 HEADERS += \
     profile_page.h \
     the_button.h \
-    the_player.h
+    the_player.h \
+    video_recorder_page.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

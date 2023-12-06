@@ -25,7 +25,7 @@
    <property name="styleSheet">
     <string notr="true">border: 1px solid rgb(0, 0, 0);
 border-radius: 75px;
-image: url(:/new/prefix1/Downloads/4831012_account_boy_man_people_profile_icon.png);
+image: url(:/new/prefix1/icons_Profile_page/4831012_account_boy_man_people_profile_icon.png);
 background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
@@ -44,7 +44,7 @@ background-color: rgb(255, 255, 255);</string>
    <property name="styleSheet">
     <string notr="true">border: 1px solid rgb(0, 0, 0);
 border-radius: 75px;
-image: url(:/new/prefix1/Downloads/4831012_account_boy_man_people_profile_icon.png);
+image: url(:/new/prefix1/icons_Profile_page/4831012_account_boy_man_people_profile_icon.png);
 background-color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
@@ -94,7 +94,7 @@ border: 1px solid white;
    </property>
    <property name="styleSheet">
     <string notr="true">border: 2px solid rgb(0, 0, 0);
-image: url(:/new/prefix1/Downloads/185038_home_house_icon-2.png);
+image: url(:/new/prefix1/icons_Profile_page/185038_home_house_icon-2.png);
 border-radius: 35px;
 background-color: rgb(255, 255, 255);</string>
    </property>
@@ -128,7 +128,7 @@ border-radius: 10px;</string>
     <property name="styleSheet">
      <string notr="true">border: 4px solid rgb(0, 0, 0);
 border-radius: 60px;
-image: url(:/new/prefix1/Downloads/7754950_media player_button_play_start_begin_icon.png);</string>
+image: url(:/new/prefix1/icons_Profile_page/7754950_media player_button_play_start_begin_icon-2.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -161,7 +161,7 @@ border-radius: 10px;</string>
     <property name="styleSheet">
      <string notr="true">border: 4px solid rgb(0, 0, 0);
 border-radius: 60px;
-image: url(:/new/prefix1/Downloads/7754950_media player_button_play_start_begin_icon.png);</string>
+image: url(:/new/prefix1/icons_Profile_page/7754950_media player_button_play_start_begin_icon-2.png);</string>
     </property>
     <property name="text">
      <string/>
@@ -179,8 +179,7 @@ image: url(:/new/prefix1/Downloads/7754950_media player_button_play_start_begin_
    </property>
    <property name="styleSheet">
     <string notr="true">border: 1px solid rgb(0, 0, 0);
-image: url(:/new/prefix1/Downloads/619539_close_delete_dismiss_exit_cancel_icon.png);
-
+image: url(:/new/prefix1/icons_Profile_page/619539_close_delete_dismiss_exit_cancel_icon.png);
 </string>
    </property>
    <property name="text">
