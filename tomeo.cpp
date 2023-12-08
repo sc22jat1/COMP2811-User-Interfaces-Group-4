@@ -23,6 +23,7 @@
 #include <QScrollArea>
 #include "profile_page.h"
 #include "video_recorder_page.h"
+#include "user_login_page.h"
 
 // read in videos and thumbnails to this directory
 std::vector<TheButtonInfo> getInfoIn(std::string loc) {
@@ -84,6 +85,9 @@ int main(int argc, char *argv[]) {
             QString("no videos found! Add command line argument to \"quoted\" file location."));
         exit(-1);
     }
+
+    // Create the login page
+    User_Login_Page loginPage;
 
     // Main window
     QWidget mainWindow;
@@ -235,8 +239,12 @@ int main(int argc, char *argv[]) {
     // Add bottom bar to the main layout
     mainLayout->addWidget(bottomBarWidget);
 
-    // showtime!
-    mainWindow.show();
+    QObject::connect(&loginPage, &User_Login_Page::login_Successful, [&mainWindow]() {
+        mainWindow.show();
+    });
+
+    // Show the login page
+    loginPage.show();
 
     // wait for the app to terminate
     return app.exec();
