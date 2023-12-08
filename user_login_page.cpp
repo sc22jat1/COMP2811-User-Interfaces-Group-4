@@ -32,6 +32,7 @@ void User_Login_Page::on_Login_Button_Clicked()
 
     if (username == validUsername && password == validPassword) {
         emit login_Successful();
+        hide();
     } else {
         QMessageBox::warning(this, "Login Failed", "Invalid username or password. Please try again.");
     }
