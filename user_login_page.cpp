@@ -1,5 +1,5 @@
 // user_login_page.cpp
-
+#include "user_signup_page.h"
 #include "user_login_page.h"
 #include "ui_user_login_page.h"
 #include <QVBoxLayout>
@@ -13,6 +13,12 @@ User_Login_Page::User_Login_Page(QWidget *parent) :
 
     // Connect the handleLoginButtonClicked() slot when the login button is clicked
     connect(ui->Login_Button, &QPushButton::clicked, this, &User_Login_Page::on_Login_Button_Clicked);
+
+    // Do not initialize the create account page here
+    User_SignUp_Page = nullptr;
+
+    // Connect the signUpButtonClicked() slot when the sign-up button is clicked
+    connect(ui->SignUp_Button, &QPushButton::clicked, this, &User_Login_Page::on_SignUp_Button_Clicked);
 }
 
 User_Login_Page::~User_Login_Page()
@@ -27,8 +33,8 @@ void User_Login_Page::on_Login_Button_Clicked()
     QString validUsername = "admin";
     QString validPassword = "admin123";
 
-    QString username = ui->UserName->text();  // 수정: 사용자 이름 필드에서 텍스트 가져오기
-    QString password = ui->Password->text();  // 수정: 비밀번호 필드에서 텍스트 가져오기
+    QString username = ui->UserName->text();
+    QString password = ui->Password->text();
 
     if (username == validUsername && password == validPassword) {
         emit login_Successful();
@@ -36,4 +42,18 @@ void User_Login_Page::on_Login_Button_Clicked()
     } else {
         QMessageBox::warning(this, "Login Failed", "Invalid username or password. Please try again.");
     }
+}
+
+void User_Login_Page::on_SignUp_Button_Clicked()
+{
+    this->hide();
+
+    // Check if User_SignUp_Page is not null before showing
+    if (!User_SignUp_Page) {
+        // Initialize the create account page if it's not already
+        User_SignUp_Page = new class User_SignUp_Page(nullptr);  // 부모를 nullptr로 설정
+    }
+
+    // Show the create account page
+    User_SignUp_Page->show();
 }

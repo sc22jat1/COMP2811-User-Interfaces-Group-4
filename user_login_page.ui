@@ -161,7 +161,7 @@ font: italic 16pt &quot;Gill Sans&quot;;</string>
     <string>New to ForReal? </string>
    </property>
   </widget>
-  <widget class="QPushButton" name="Login_Button_2">
+  <widget class="QPushButton" name="SignUp_Button">
    <property name="geometry">
     <rect>
      <x>230</x>

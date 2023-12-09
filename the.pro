@@ -12,12 +12,16 @@ SOURCES += \
         the_button.cpp \
         the_player.cpp \
         tomeo.cpp \
+        user_login_page.cpp \
+        user_signup_page.cpp \
         video_recorder_page.cpp
 
 HEADERS += \
     profile_page.h \
     the_button.h \
     the_player.h \
+    user_login_page.h \
+    user_signup_page.h \
     video_recorder_page.h
 
 # Default rules for deployment.
@@ -26,13 +30,13 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 FORMS += \
-    profile_page.ui
+    profile_page.ui \
+    user_login_page.ui \
+    user_signup_page.ui
 
 RESOURCES += \
     Profile_resource.qrc
 
-DISTFILES += \
-    ../Downloads/black-24dp/2x/baseline_close_black_24dp.png
 
 
 
