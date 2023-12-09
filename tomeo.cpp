@@ -183,17 +183,67 @@ int main(int argc, char *argv[]) {
         // Like, Share, Comment buttons
         QHBoxLayout *buttonsLayout = new QHBoxLayout();
 
-        QPushButton *likeButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/heart_icon.png"), "");
-        // likeButton->setStyleSheet("outline: none;");  // Remove focus border
-        QPushButton *shareButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/share_icon.png"), "");
-        // shareButton->setFlat(true);  // Set flat property to remove the button outline
-        QPushButton *commentButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/comment_icon.png"), "");
-        // commentButton->setFlat(true);  // Set flat property to remove the button outline
+        TheButton *likeButton = new TheButton(nullptr);
+        likeButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/heart_icon.png"));
+        likeButton->setCheckable(true);
+        likeButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
+        likeButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
+        likeButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
 
-        // Add the buttons to the layout
+
+        // Connect the new signal to update the button icon
+        QObject::connect(likeButton, &TheButton::likeStateChanged, [likeButton](bool liked) {
+            if (liked) {
+                likeButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/redheart_icon.png"));
+            } else {
+                likeButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/heart_icon.png"));
+            }
+        });
+
+        // Share button
+        QPushButton *shareButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/share_icon.png"), "");
+        shareButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
+        shareButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
+        shareButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
+
+
+        // Comment button
+        QPushButton *commentButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/comment_icon.png"), "");
+        commentButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
+        commentButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
+        commentButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
+
+
+        // Sound button
+        QPushButton *soundButton = new QPushButton(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/muted_icon.png"), "");
+        soundButton->setFixedSize(QSize(40, 40));  // Set a fixed size for the like button
+        soundButton->setIconSize(QSize(25, 25));  // Adjust the size according to your preference
+        soundButton->setStyleSheet("background-color: #808080; border: none; border-radius: 20px;");
+
+        // Connect the click event of the soundButton to toggle sound and change the icon
+        QObject::connect(soundButton, &QPushButton::clicked, [player, soundButton]() {
+            player->toggleSound(); // Add a function to toggle sound in ThePlayer class
+
+            // Toggle the icon based on the sound state
+            if (player->isMuted()) {
+                soundButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/muted_icon.png"));
+            } else {
+                soundButton->setIcon(QIcon("D:/ainin/Documents/COMP2811-UI/2811_cw3-master-release-lowres/icons/sound_icon.png"));
+            }
+        });
+
+
+        // Share button
+        QPushButton *noButton = new QPushButton(QIcon(""), "");
+        noButton->setIconSize(QSize(30, 30));  // Adjust the size according to your preference
+        noButton->setStyleSheet("background-color: transparent; border: none;");
+
+        // Add buttons to the custom widget
         buttonsLayout->addWidget(likeButton);
         buttonsLayout->addWidget(shareButton);
         buttonsLayout->addWidget(commentButton);
+        buttonsLayout->addWidget(noButton);
+        buttonsLayout->addWidget(soundButton);
 
         // Add layouts and widgets to videoLayout
         videoLayout->addLayout(userLayout);
@@ -203,11 +253,19 @@ int main(int argc, char *argv[]) {
 
         // Add video widget to the scroll layout
         scrollLayout->addWidget(videoWidget);
+
+        // Add a line separator
+        QFrame* line = new QFrame();
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        line->setLineWidth(2);  // Adjust the line thickness here
+        scrollLayout->addWidget(line);
     }
 
     // Set up scroll area
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(scrollWidget);
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // Add scroll area to the main layout
     mainLayout->addWidget(scrollArea);

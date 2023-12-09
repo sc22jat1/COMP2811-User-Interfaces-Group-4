@@ -36,6 +36,7 @@ void ThePlayer::playStateChanged(QMediaPlayer::State ms)
 void ThePlayer::jumpTo(TheButtonInfo *button)
 {
     setMedia(*button->url);
+    setMuted(true);
     play();
 }
 
@@ -49,4 +50,9 @@ void ThePlayer::playPauseToggle()
     {
         play();
     }
+}
+
+void ThePlayer::toggleSound()
+{
+    setMuted(!isMuted()); // Toggle the mute state
 }

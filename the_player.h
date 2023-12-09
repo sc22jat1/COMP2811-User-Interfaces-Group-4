@@ -22,6 +22,7 @@ public:
 public slots:
     void playStateChanged(QMediaPlayer::State ms);
     void playPauseToggle(); // New function for play/pause toggle
+    void toggleSound(); // Declaration for toggleSound
 
 private:
     std::vector<TheButton *> *buttons;
